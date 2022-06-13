@@ -1,4 +1,4 @@
-<h1 align="center">Rohe</h1>
+<h1 align="center">rohe</h1>
 
 ## Description
 A command line interface for a New Zealand locator API for postal addresses and regions.  The name 'rohe' is the Māori word for 'areas'.
