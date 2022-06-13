@@ -1,0 +1,21 @@
+[package]
+name = "rohe"
+version = "0.1.0"
+authors = ["Jake W. Ireland <jakewilliami@icloud.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# tokio = {version = "0.2", features = ["full"]}
+tokio = { version = "1", features = ["full"] }
+# async-std = { verson = "1", features = ["attributes", "tokio1"] }
+base64 = "0.13.0"
+reqwest = "0.11.4"
+lazy_static = "1.4.0"
+clap = "2.33.3"
+hyper = "0.14.11"
+serde_json = "1.0.66"
+serde = { version = "1.0", features = ["derive"] }
+# serde = "1.0.127"
+
