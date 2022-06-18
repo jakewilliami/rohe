@@ -29,8 +29,6 @@ pub const PC_KEY_ENCODED: &str = "RnVsbFBhcnRpYWw=";
 pub const REGION_KEY_ENCODED: &str = "Q2l0eVRvd24=";
 
 lazy_static!{
-    // static ref STATE: Mutex<MyState> = Mutex::new(MyState::whatever());
-    
     // AS URIs
     pub static ref GLOB_BASE: Uri = into_uri(GLOB_BASE_ENCODED);
     pub static ref BASE_PUBLIC_URI: Uri = into_uri(BASE_PUBLIC_URI_ENCODED);
@@ -40,9 +38,7 @@ lazy_static!{
             base64_into_str(BASE_PUBLIC_URI_ENCODED)
         ).as_str()
     );
-    // static ref PUBLIC_URI: String = GLOB_BASE
-    //     .push_str(into_uri(BASE_PUBLIC_URI_ENCODED))
-    //     .push_str(into_uri(PUBLIC_URI_ENCODED));
+
     pub static ref PUBLIC_URI: Uri = into_uri(
         format!("{}{}{}",
             base64_into_str(GLOB_BASE_ENCODED),
@@ -50,12 +46,7 @@ lazy_static!{
             base64_into_str(PUBLIC_URI_ENCODED)
         ).as_str()
     );
-    // static ref PUBLIC_URI: String = String::new()
-    //     .push_str(&GLOB_BASE)
-    //     .push_str(&into_uri(BASE_PUBLIC_URI_ENCODED))
-    //     .push_str(&into_uri(PUBLIC_URI_ENCODED));
-    // PUBLIC_URI.push_str(into_uri(BASE_PUBLIC_URI_ENCODED));
-    // PUBLIC_URI.push_str(into_uri(PUBLIC_URI_ENCODED));
+
     pub static ref BASE_API_URI: Uri = into_uri(BASE_API_URI_ENCODED);
     pub static ref API_URI: Uri = into_uri(API_URI_ENCODED);
     

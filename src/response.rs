@@ -14,12 +14,6 @@ pub struct PostcodeSearchResponse {
     pub addresses: Vec<EachPostcode>,
 }
 
-// #[derive(Serialize, Deserialize, Debug)]
-// pub struct PostcodeResponse {
-//     // pub success: bool,
-//     pub addresses: Vec<EachPostcode>,
-// }
-
 // successful address response
 
 #[derive(Serialize, Deserialize, Debug)]
