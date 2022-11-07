@@ -8,43 +8,54 @@ use postcodes::*;
 use response::*;
 
 extern crate clap;
-use clap::{Arg, ArgAction, Command, crate_version};
+use clap::{ArgAction, crate_version, Parser};
+
+#[derive(Parser)]
+#[command(
+	name = "bats",
+	author = "Jake·W.·Ireland.·<jakewilliami@icloud.com>",
+	version = crate_version!(),
+	about = "A command line interface for NZP's locator API.",
+	long_about = "A command line interface for NZP's locator API.  The name 'rohe' is the Māori word for 'areas'.",
+)]
+struct Cli {
+	/// Takes address as input.  Default return value is the address' associated postcode
+	#[arg(
+		short = 'a',
+		long = "address",
+		action = ArgAction::Set,
+		num_args = 0..=1,
+		value_name = "address",
+	)]
+	addr: Option<String>,
+
+	/// Takes postcode as input.  Default return value is the postcode's associated region
+	#[arg(
+		short = 'p',
+		long = "postcode",
+		action = ArgAction::Set,
+		num_args = 0..=1,
+		value_name = "postcode"
+	)]
+	postcode: Option<String>,
+
+	/// Return address as (latitude, longitude)
+	#[arg(
+		short = 'c',
+		long = "coordinates",
+		action = ArgAction::Set,
+		num_args = 0..=1,
+		value_name = "address",
+	)]
+	coords: Option<String>,
+}
 
 #[tokio::main]
 async fn main() {
-    let cmd = Command::new("rohe")
-				.version(crate_version!())
-				.author("Jake W. Ireland. <jakewilliami@icloud.com>")
-				.about("A command line interface for NZP's locator API.  The name 'rohe' is the Māori word for 'areas'.")
-						.arg(Arg::new("ADDR")
-							.short('a')
-							.long("address")
-							.action(ArgAction::Set)
-							.num_args(0..=1)
-							.value_name("address")
-							.help("Takes address as input.  Default return value is the address' associated postcode.")
-						)
-						.arg(Arg::new("POSTCODE")
-							.short('p')
-							.long("postcode")
-							.action(ArgAction::Set)
-							.num_args(0..=1)
-							.value_name("postcode")
-							.help("Takes postcode as input.  Default return value is the postcode's associated region.")
-						)
-						.arg(Arg::new("ADDR_FOR_COORDS")
-							.short('c')
-							.long("coordinates")
-							.action(ArgAction::Set)
-							.num_args(0..=1)
-							.value_name("address")
-							.help("Return address as (latitude, longitude).")
-						);
-
-	let matches = cmd.get_matches();
+	let cli = Cli::parse();
 
 	// Find postcode information
-	if let Some(postcode_str) = matches.get_one::<String>("POSTCODE") {
+	if let Some(postcode_str) = cli.postcode {
 		let bad_response: &str = "There was no postcode in the database that matched your input.";
 
 		// get value of postcode
@@ -87,14 +98,14 @@ async fn main() {
 	}
 
 	// Find address information
-	if let Some(addr) = matches.get_one::<String>("ADDR").map(|s| s.to_owned()) {
+	if let Some(addr) = cli.addr {
 		// get value of address
 		let resp: Option<Vec<EachAddress>> = request::get_suggested_addresses(addr).await;
 		println!("{:?}", resp);
 	}
 
 	// Get address coordinated
-	if let Some(postcode_str) = matches.get_one::<String>("ADDR_FOR_COORDS") {
+	if let Some(_addr_for_coords) = cli.coords {
 		todo!();
 	}
 }

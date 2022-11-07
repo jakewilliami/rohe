@@ -8,7 +8,7 @@ edition = "2018"
 
 [dependencies]
 base64 = "0.13.1"
-clap = { version = "4.0.19", features = ["cargo", "wrap_help"] }
+clap = { version = "4.0.19", features = ["cargo", "wrap_help", "derive"] }
 hyper = "0.14.22"
 lazy_static = "1.4.0"
 reqwest = "0.11.12"
