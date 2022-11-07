@@ -12,7 +12,7 @@ use clap::{ArgAction, crate_version, Parser};
 
 #[derive(Parser)]
 #[command(
-	name = "bats",
+	name = "rohe",
 	author = "Jake·W.·Ireland.·<jakewilliami@icloud.com>",
 	version = crate_version!(),
 	about = "A command line interface for NZP's locator API.",
