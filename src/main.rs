@@ -21,6 +21,7 @@ async fn main() {
 							.long("address")
 							.action(ArgAction::Set)
 							.num_args(0..=1)
+							.value_name("address")
 							.help("Takes address as input.  Default return value is the address' associated postcode.")
 						)
 						.arg(Arg::new("POSTCODE")
@@ -28,6 +29,7 @@ async fn main() {
 							.long("postcode")
 							.action(ArgAction::Set)
 							.num_args(0..=1)
+							.value_name("postcode")
 							.help("Takes postcode as input.  Default return value is the postcode's associated region.")
 						)
 						.arg(Arg::new("ADDR_FOR_COORDS")
@@ -35,7 +37,8 @@ async fn main() {
 							.long("coordinates")
 							.action(ArgAction::Set)
 							.num_args(0..=1)
-							.help("Return addresses as (latitude, longitude).")
+							.value_name("address")
+							.help("Return address as (latitude, longitude).")
 						);
 
 	let matches = cmd.get_matches();
@@ -88,5 +91,10 @@ async fn main() {
 		// get value of address
 		let resp: Option<Vec<EachAddress>> = request::get_suggested_addresses(addr).await;
 		println!("{:?}", resp);
+	}
+
+	// Get address coordinated
+	if let Some(postcode_str) = matches.get_one::<String>("ADDR_FOR_COORDS") {
+		todo!();
 	}
 }
