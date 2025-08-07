@@ -1,0 +1,3 @@
+# https://github.com/brotzeit/rustic#edition-2018
+# https://github.com/rust-lang/rustfmt#4454
+edition = "2024"

@@ -5,6 +5,6 @@ A command line interface for a New Zealand locator API for postal addresses and 
 
 ## Quick Start
 ```bash
-$ ./compile.sh
+$ just
 $ ./rohe -h
 ```

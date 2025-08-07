@@ -1,31 +1,34 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 // successful postcode response
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct EachPostcode {
-    pub UniqueId: i64,
-    pub FullPartial: String,
+#[serde(rename_all = "PascalCase")]
+pub struct PostcodeInfo {
+    pub unique_id: i64,
+    pub full_partial: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct PostcodeSearchResponse {
     pub success: bool,
-    pub addresses: Vec<EachPostcode>,
+    pub addresses: Vec<PostcodeInfo>,
 }
 
 // successful address response
 
 #[derive(Serialize, Deserialize, Debug)]
-pub struct EachAddress {
-    pub SourceDesc: String,
-    pub FullAddress: String,
-    pub DPID: i64,
+#[serde(rename_all = "PascalCase")]
+pub struct Address {
+    pub source_desc: String,
+    pub full_address: String,
+    #[serde(rename = "DPID")]
+    pub dp_id: i64,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct AddressSearchResponse {
-    pub addresses: Vec<EachAddress>,
+    pub addresses: Vec<Address>,
     pub status: String,
     pub success: bool,
 }
